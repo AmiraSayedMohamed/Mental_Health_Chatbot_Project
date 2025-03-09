@@ -2,13 +2,16 @@ import os
 from langchain_groq import ChatGroq
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
+import streamlit as st
 from dotenv import load_dotenv  # Load environment variables
 
 # Load environment variables from .env file
-load_dotenv()
+# load_dotenv()
 
 def initialize_llm():
-    groq_api_key = os.getenv("GROQ_API_KEY")
+    # groq_api_key = os.getenv("GROQ_API_KEY")
+    groq_api_key = st.secrets["GROQ_API_KEY"]
+
     if not groq_api_key:
         raise ValueError("GROQ_API_KEY not found in environment variables")
     print(f"GROQ_API_KEY: {groq_api_key}")  # Debugging line
